@@ -1,38 +1,37 @@
+"""Module used for importing time functionds"""
 import time
 
-maximum = 100
+maximum = 101
 
-minimum = -3
+minimum = -4
 
-def lift(x,y):
 
-    global z
+"""Main module which performm lift operation"""
 
-   
 
-    if x<maximum and y<maximum and x>minimum and y>minimum :
+def lift(x, y):
 
-        z=x
+    if x < maximum and y < maximum and x > minimum and y > minimum:
+        global z
+        z = x
 
-        if z>y:
+        if z > y:
 
             print(z)
 
-            while z!=y:
+            while z != y:
 
-                z-=1
+                z -= 1
 
                 time.sleep(1)
 
                 print(z)
 
-       
+        elif z < y:
 
-        elif z<y:
+            while z != y:
 
-            while z!=y:
-
-                z+=1
+                z += 1
 
                 time.sleep(1)
 
@@ -43,22 +42,25 @@ def lift(x,y):
             print("you are on same floor")
 
     else:
-
-        print("please check building range the maximum is ",maximum, "and minimum is ",minimum)
+        z = x
+        print("please check building range the maximum is ",
+              maximum, "and minimum is ", minimum)
 
         liftloop()
 
+
+"""Module which perform looping of lift operation"""
 def liftloop():
 
-    c=input("Would you want to go to another floor ? \n")
+    c = input("Would you want to go to another floor ? \n")
 
-    print("You are on floor ",z)
+    print("You are on floor ", z)
 
-    if c=='yes' or c=='Yes' or c=='YES' or c=='y':
+    if c == 'yes' or c == 'Yes' or c == 'YES' or c == 'y':
 
-        a=int(input("Enter your destination floor :"))
+        a = int(input("Enter your destination floor :"))
 
-        lift(z,a)
+        lift(z, a)
 
         liftloop()
 
@@ -66,18 +68,19 @@ def liftloop():
 
         print("Thanks for using our lift service")
 
-       
 
-x=int(input("Enter your current floor : "))
+print("Welcome to lift service, This apartments limit is between -3 and 100")
+x = int(input("Enter your current floor : "))
 
-if x!=0:
+if x < maximum and x > minimum:
+    if x != 0:
+        print("please wait the lift is on floor 0")
+        time.sleep(x/10)
 
-    print("please wait the lift is on floor 0")
+        y = int(input("Enter your destination floor : "))
 
-time.sleep(x/10)
+        lift(x, y)
 
-y=int(input("Enter your destination floor : "))
-
-lift(x,y)
-
-liftloop()
+        liftloop()
+else:
+    print("Please check Limit of this apartment")
