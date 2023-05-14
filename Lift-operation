@@ -1,0 +1,83 @@
+import time
+
+maximum = 100
+
+minimum = -3
+
+def lift(x,y):
+
+    global z
+
+   
+
+    if x<maximum and y<maximum and x>minimum and y>minimum :
+
+        z=x
+
+        if z>y:
+
+            print(z)
+
+            while z!=y:
+
+                z-=1
+
+                time.sleep(1)
+
+                print(z)
+
+       
+
+        elif z<y:
+
+            while z!=y:
+
+                z+=1
+
+                time.sleep(1)
+
+                print(z)
+
+        else:
+
+            print("you are on same floor")
+
+    else:
+
+        print("please check building range the maximum is ",maximum, "and minimum is ",minimum)
+
+        liftloop()
+
+def liftloop():
+
+    c=input("Would you want to go to another floor ? \n")
+
+    print("You are on floor ",z)
+
+    if c=='yes' or c=='Yes' or c=='YES' or c=='y':
+
+        a=int(input("Enter your destination floor :"))
+
+        lift(z,a)
+
+        liftloop()
+
+    else:
+
+        print("Thanks for using our lift service")
+
+       
+
+x=int(input("Enter your current floor : "))
+
+if x!=0:
+
+    print("please wait the lift is on floor 0")
+
+time.sleep(x/10)
+
+y=int(input("Enter your destination floor : "))
+
+lift(x,y)
+
+liftloop()
